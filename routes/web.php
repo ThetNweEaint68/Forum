@@ -23,6 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('threads', [App\Http\Controllers\ThreadsController::class, 'index']);
 Route::get('threads/{channel}/{thread}', [App\Http\Controllers\ThreadsController::class, 'show']);
-Route::post('threads/create', [App\Http\Controllers\ThreadsController::class, 'create']);
-Route::get('threads', [App\Http\Controllers\ThreadsController::class, 'store']);
+Route::get('threads/create', [App\Http\Controllers\ThreadsController::class, 'create']);
+Route::post('threads', [App\Http\Controllers\ThreadsController::class, 'store']);
 Route::post('/threads/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'store']);
