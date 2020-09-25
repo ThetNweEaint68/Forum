@@ -22,8 +22,8 @@ class ParticipateInThreadsTest extends TestCase
     {
         $this->signIn();
 
-        $thread = create('App\Thread');
-        $reply = make('App\Reply');
+        $thread = create('App\Models\Thread');
+        $reply = make('App\Models\Reply');
 
         $this->post($thread->path() . '/replies', $reply->toArray());
 
@@ -36,8 +36,8 @@ class ParticipateInThreadsTest extends TestCase
     {
         $this->withExceptionHandling()->signIn();
 
-        $thread = create('App\Thread');
-        $reply = make('App\Reply', ['body' => null]);
+        $thread = create('App\Models\Thread');
+        $reply = make('App\Models\Reply', ['body' => null]);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
              ->assertSessionHasErrors('body');

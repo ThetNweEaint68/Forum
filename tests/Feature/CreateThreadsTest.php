@@ -26,7 +26,7 @@ class CreateThreadsTest extends TestCase
     {
         $this->signIn();
 
-        $thread = make('App\Thread');
+        $thread = make('App\Models\Thread');
 
         $response = $this->post('/threads', $thread->toArray());
 
@@ -52,7 +52,7 @@ class CreateThreadsTest extends TestCase
     /** @test */
     function a_thread_requires_a_valid_channel()
     {
-        factory('App\Channel', 2)->create();
+        factory('App\Models\Channel', 2)->create();
 
         $this->publishThread(['channel_id' => null])
             ->assertSessionHasErrors('channel_id');
@@ -65,7 +65,7 @@ class CreateThreadsTest extends TestCase
     {
         $this->withExceptionHandling()->signIn();
 
-        $thread = make('App\Thread', $overrides);
+        $thread = make('App\Models\Thread', $overrides);
 
         return $this->post('/threads', $thread->toArray());
     }

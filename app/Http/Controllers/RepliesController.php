@@ -32,5 +32,4 @@ class RepliesController extends Controller
 
         return back();
     }
-    }
 }
