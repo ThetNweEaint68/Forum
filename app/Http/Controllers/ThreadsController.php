@@ -17,7 +17,6 @@ class ThreadsController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -28,6 +27,10 @@ class ThreadsController extends Controller
     public function index(Channel $channel, ThreadFilters $filters)
     {
         $threads = $this->getThreads($channel, $filters);
+
+        if (request()->wantsJson()) {
+            return $threads;
+        }
 
         return view('threads.index', compact('threads'));
     }
@@ -63,22 +66,36 @@ class ThreadsController extends Controller
             'body' => request('body')
         ]);
 
-        return redirect($thread->path());
+        return redirect($thread->path())
+            ->with('flash', 'Your thread has been published!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  integer     $channelId
+     * @param  integer     $channel
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function show($channelId, Thread $thread)
+    public function show($channel, Thread $thread)
     {
         return view('threads.show', [
             'thread' => $thread,
             'replies' => $thread->replies()->paginate(20)
         ]);
+    }
+
+    public function destroy($channel, Thread $thread)
+    {
+        $this->authorize('update', $thread);
+
+        $thread->delete();
+
+        if (request()->wantsJson()) {
+            return response([], 204);
+        }
+
+        return redirect('/threads');
     }
 
     /**
@@ -98,4 +115,5 @@ class ThreadsController extends Controller
 
         return $threads->get();
     }
+
 }

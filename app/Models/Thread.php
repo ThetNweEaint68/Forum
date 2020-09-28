@@ -8,7 +8,7 @@ use App\Filters\ThreadFilters;
 
 class Thread extends Model
 {
-    use HasFactory;
+    use HasFactory, RecordsActivity;
 
     /**
      * Don't auto-apply mass assignment protection.
@@ -16,6 +16,8 @@ class Thread extends Model
      * @var array
      */
     protected $guarded = [];
+
+    protected $with = ['creator', 'channel'];
 
     /**
      * Boot the model.
@@ -26,6 +28,11 @@ class Thread extends Model
 
         static::addGlobalScope('replyCount', function ($builder) {
             $builder->withCount('replies');
+        });
+
+        static::deleting(function ($thread) {
+            $thread->replies()->delete();
+            $thread->replies->each->delete();
         });
     }
 
