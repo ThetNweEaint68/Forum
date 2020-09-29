@@ -46,7 +46,7 @@ class ActivityTest extends TestCase
     {
         $this->signIn();
 
-        create('App\Thread', ['user_id' => auth()->id()], 2);
+        create('App\Models\Thread', ['user_id' => auth()->id()], 2);
 
         auth()->user()->activity()->first()->update(['created_at' => Carbon::now()->subWeek()]);
 

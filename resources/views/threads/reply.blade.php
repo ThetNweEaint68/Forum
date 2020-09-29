@@ -7,29 +7,34 @@
                 </a> said {{ $reply->created_at->diffForHumans() }}...
             </h6>
 
-            <div>
-                <form method="POST" action="/replies/{{ $reply->id }}/favorites">
+            @if (Auth::check())
+                <div>
+                    <form method="POST" action="/replies/{{ $reply->id }}/favorites">
                     {{ csrf_field() }}
 
-                    <button type="submit" class="btn btn-default" {{ $reply->isFavorited() ? 'disabled' : '' }}>
+                        <button type="submit" class="glyphicon glyphicon-heart" {{ $reply->isFavorited() ? 'disabled' : '' }}>
                         {{ $reply->favorites_count }} Favorite
-                    </button>
-                </form>
-            </div>
+                        </button>
+                        <favorite :reply="{{ $reply }}"></favorite>
+                    </form>
+                </div>
+            @endif
         </div>
     </div>
 
     <div class="panel-body">
         {{ $reply->body }}
-    </div>
+    </div><br>
 
     @can ('update', $reply)
-        <div class="panel-footer">
+        <div class="panel-footer level">
+        	<button type="submit" class="btn btn-success">Edit</button>&nbsp;
+
             <form method="POST" action="/replies/{{ $reply->id }}">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
 
-                <button type="submit" class="btn btn-danger btn-xs">Delete</button><br><br>
+                <button type="submit" class="btn btn-danger">Delete</button><br>
             </form>
         </div>
     @endcan
