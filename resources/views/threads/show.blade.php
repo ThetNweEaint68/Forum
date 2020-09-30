@@ -58,6 +58,10 @@
                             <a href="#">{{ $thread->creator->name }}</a>, and currently
                             has {{ $thread->replies_count }} comment.
                         </p>
+
+                        <p>
+                            <button class="btn btn-primary">Subscribe</button>
+                        </p>
                     </div>
                 </div>
             </div>

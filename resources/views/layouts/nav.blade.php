@@ -20,6 +20,7 @@
                                     <li><a href="/threads?by={{ auth()->user()->name }}">My Threads</a></li>
                                 @endif
                                     <li><a href="/threads?popular=1">Popular Threads</a></li>
+                                    <li><a href="/threads?unanswered=1">Unanswered Threads</a></li>
                             </ul>
                         </li>&nbsp;&nbsp;
 
@@ -50,6 +51,17 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Notifications
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Foobar</a>
+                                    </li>
+                                </ul>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

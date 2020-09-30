@@ -17,7 +17,19 @@ class Thread extends Model
      */
     protected $guarded = [];
 
+    /**
+     * The relationships to always eager-load.
+     *
+     * @var array
+     */
     protected $with = ['creator', 'channel'];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['isSubscribedTo'];
 
     /**
      * Boot the model.
@@ -26,12 +38,12 @@ class Thread extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('replyCount', function ($builder) {
-            $builder->withCount('replies');
-        });
+        //static::addGlobalScope('replyCount', function ($builder) {
+            //$builder->withCount('replies');
+        //});
 
         static::deleting(function ($thread) {
-            $thread->replies()->delete();
+            //$thread->replies()->delete();
             $thread->replies->each->delete();
         });
     }
@@ -79,12 +91,29 @@ class Thread extends Model
     /**
      * Add a reply to the thread.
      *
-     * @param array $reply
-     * @return Reply
+     * @param  array $reply
+     * @return Model
      */
     public function addReply($reply)
     {
-        return $this->replies()->create($reply);
+        $reply = $this->replies()->create($reply);
+
+        $this->notifySubscribers($reply);
+
+        return $reply;
+    }
+
+    /**
+     * Notify all thread subscribers about a new reply.
+     *
+     * @param \App\Reply $reply
+     */
+    public function notifySubscribers($reply)
+    {
+        $this->subscriptions
+            ->where('user_id', '!=', $reply->user_id)
+            ->each
+            ->notify($reply);
     }
 
     /**
@@ -97,5 +126,54 @@ class Thread extends Model
     public function scopeFilter($query, ThreadFilters $filters)
     {
         return $filters->apply($query);
+    }
+
+    /**
+     * Subscribe a user to the current thread.
+     *
+     * @param  int|null $userId
+     * @return $this
+     */
+    public function subscribe($userId = null)
+    {
+        $this->subscriptions()->create([
+            'user_id' => $userId ?: auth()->id()
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Unsubscribe a user from the current thread.
+     *
+     * @param int|null $userId
+     */
+    public function unsubscribe($userId = null)
+    {
+        $this->subscriptions()
+            ->where('user_id', $userId ?: auth()->id())
+            ->delete();
+    }
+
+    /**
+     * A thread can have many subscriptions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(ThreadSubscription::class);
+    }
+
+    /**
+     * Determine if the current user is subscribed to the thread.
+     *
+     * @return boolean
+     */
+    public function getIsSubscribedToAttribute()
+    {
+        return $this->subscriptions()
+            ->where('user_id', auth()->id())
+            ->exists();
     }
 }

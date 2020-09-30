@@ -1,5 +1,5 @@
 <template>
-    <div class="alert alert-success alert-flash" role="alert" v-show="show">
+    <div class="alert alert-success alert-flash" role="alert">
         <strong>Success!</strong> {{ body }}
     </div>
 </template>

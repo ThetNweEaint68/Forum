@@ -28,12 +28,20 @@ Route::get('threads/{channel}', [App\Http\Controllers\ThreadsController::class, 
 Route::delete('threads/{channel}/{thread}', [App\Http\Controllers\ThreadsController::class, 'destroy']);
 Route::post('threads', [App\Http\Controllers\ThreadsController::class, 'store']);
 
+Route::get('/threads/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'index']);
 Route::post('/threads/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'store']);
 Route::patch('/replies/{reply}',[App\Http\Controllers\RepliesController::class, 'update']);
 Route::delete('/replies/{reply}', [App\Http\Controllers\RepliesController::class, 'destroy']);
+
+Route::post('/threads/{channel}/{thread}/subscriptions', [App\Http\Controllers\ThreadSubscriptionsController::class, 'store'])->middleware('auth');
+Route::delete('/threads/{channel}/{thread}/subscriptions', [App\Http\Controllers\ThreadSubscriptionsController::class, 'destroy'])->middleware('auth');
+
 
 Route::post('replies/{reply}/favorites', [App\Http\Controllers\FavoritesController::class, 'store']);
 Route::delete('/replies/{reply}/favorites', [App\Http\Controllers\FavoritesController::class, 'destroy']);
 
 Route::get('/profiles/{user}', [App\Http\Controllers\ProfilesController::class, 'show'])->name('profile');
+
+Route::get('/profiles/{user}/notifications', [App\Http\Controllers\UserNotificationsController::class, 'index']);
+Route::delete('/profiles/{user}/notifications/{notification}', [App\Http\Controllers\UserNotificationsController::class, 'destroy']);
 
