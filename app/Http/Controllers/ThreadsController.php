@@ -10,7 +10,7 @@ use App\Filters\ThreadFilters;
 class ThreadsController extends Controller
 {
     /**
-     * ThreadsController constructor.
+     * Create a new ThreadsController instance.
      */
     public function __construct()
     {
@@ -54,8 +54,8 @@ class ThreadsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
+            'title' => 'required|spamfree',
+            'body' => 'required|spamfree',
             'channel_id' => 'required|exists:channels,id'
         ]);
 

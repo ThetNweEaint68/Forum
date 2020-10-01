@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Filters\ThreadFilters;
+use App\Events\ThreadReceivedNewReply;
 
 class Thread extends Model
 {
@@ -38,12 +39,7 @@ class Thread extends Model
     {
         parent::boot();
 
-        //static::addGlobalScope('replyCount', function ($builder) {
-            //$builder->withCount('replies');
-        //});
-
         static::deleting(function ($thread) {
-            //$thread->replies()->delete();
             $thread->replies->each->delete();
         });
     }
@@ -98,22 +94,9 @@ class Thread extends Model
     {
         $reply = $this->replies()->create($reply);
 
-        $this->notifySubscribers($reply);
+        event(new ThreadReceivedNewReply($reply));
 
         return $reply;
-    }
-
-    /**
-     * Notify all thread subscribers about a new reply.
-     *
-     * @param \App\Reply $reply
-     */
-    public function notifySubscribers($reply)
-    {
-        $this->subscriptions
-            ->where('user_id', '!=', $reply->user_id)
-            ->each
-            ->notify($reply);
     }
 
     /**

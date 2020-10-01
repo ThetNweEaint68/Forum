@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Thread;
 use App\Models\Reply;
+use App\Http\Requests\CreatePostRequest;
 
 class RepliesController extends Controller
 {
@@ -29,24 +30,32 @@ class RepliesController extends Controller
     /**
      * Persist a new reply.
      *
-     * @param  integer $channelId
-     * @param  Thread  $thread
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  integer           $channelId
+     * @param  Thread            $thread
+     * @param  CreatePostRequest $form
+     * @return \Illuminate\Database\Eloquent\Model
      */
-    public function store($channelId, Thread $thread)
+    public function store($channelId, Thread $thread, CreatePostRequest $form)
     {
-        $this->validate(request(), ['body' => 'required']);
-
-        $reply = $thread->addReply([
+        return $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id()
-        ]);
+        ])->load('owner');
+    }
 
-        if (request()->expectsJson()) {
-            return $reply->load('owner');
-        }
+    /**
+     * Update an existing reply.
+     *
+     * @param Reply $reply
+     */
+    public function update(Reply $reply)
+    {
+        $this->authorize('update', $reply);
 
-        return back()->with('flash', 'Your reply has been left.');
+        $this->validate(request(), ['body' => 'required|spamfree']);
+
+        $reply->update(request(['body']));
+
     }
 
     /**
@@ -66,19 +75,5 @@ class RepliesController extends Controller
         }
 
         return back();
-    }
-
-    /**
-     * Update an existing reply.
-     *
-     * @param Reply $reply
-     */
-    public function update(Reply $reply)
-    {
-        $this->authorize('update', $reply);
-
-        $this->validate(request(), ['body' => 'required']);
-
-        $reply->update(request(['body']));
     }
 }

@@ -14,32 +14,29 @@
     import Reply from './Reply.vue';
     import NewReply from './NewReply.vue';
     import collection from '../mixins/collection';
-
     export default {
         components: { Reply, NewReply },
-         mixins: [collection],
+        mixins: [collection],
         data() {
             return { dataSet: false };
         },
-            created() {
+        created() {
             this.fetch();
         },
-        
-            methods: {
+        methods: {
             fetch(page) {
                 axios.get(this.url(page)).then(this.refresh);
             },
-             url(page) {
+            url(page) {
                 if (! page) {
                     let query = location.search.match(/page=(\d+)/);
                     page = query ? query[1] : 1;
                 }
                 return `${location.pathname}/replies?page=${page}`;
             },
-                refresh({data}) {
+            refresh({data}) {
                 this.dataSet = data;
                 this.items = data.data;
-
                 window.scrollTo(0, 0);
             }
         }

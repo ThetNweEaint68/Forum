@@ -25,7 +25,6 @@
 
 <script>
     export default {
-        props: ['endpoint'],
         data() {
             return {
                 body: ''
@@ -39,6 +38,9 @@
         methods: {
             addReply() {
                 axios.post(location.pathname + '/replies', { body: this.body })
+                    .catch(error => {
+                        flash(error.response.data, 'danger');
+                    })
                     .then(({data}) => {
                         this.body = '';
                         flash('Your reply has been posted.');

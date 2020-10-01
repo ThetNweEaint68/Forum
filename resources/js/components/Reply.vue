@@ -16,12 +16,14 @@
 
         <div class="panel-body">
             <div v-if="editing">
-                <div class="form-group">
-                    <textarea class="form-control" v-model="body"></textarea>
-                </div>
+                <form @submit="update">
+                    <div class="form-group">
+                        <textarea class="form-control" v-model="body" required></textarea>
+                    </div>
 
-                <button class="btn btn-xs btn-primary" @click="update">Update</button>
-                <button class="btn btn-xs btn-link" @click="editing = false">Cancel</button>
+                    <button class="btn btn-xs btn-primary">Update</button>
+                    <button class="btn btn-xs btn-link" @click="editing = false" type="button">Cancel</button>
+                </form>
             </div>
 
             <div v-else v-text="body"></div>
@@ -51,7 +53,6 @@
             ago() {
                 return moment(this.data.created_at).fromNow() + '...';
             },
-
             signedIn() {
                 return window.App.signedIn;
             },
@@ -61,9 +62,13 @@
         },
         methods: {
             update() {
-                axios.patch('/replies/' + this.data.id, {
-                    body: this.body
-                });
+                axios.patch(
+                    '/replies/' + this.data.id, {
+                        body: this.body
+                    })
+                    .catch(error => {
+                        flash(error.response.data, 'danger');
+                    });
                 this.editing = false;
                 flash('Updated!');
             },

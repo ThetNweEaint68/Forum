@@ -98,4 +98,37 @@ class ParticipateInThreadsTest extends TestCase
 
         $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => $updatedReply]);
     }
+
+    /** @test */
+    function replies_that_contain_spam_may_not_be_created()
+    {
+        $this->withExceptionHandling();
+
+        $this->signIn();
+
+        $thread = create('App\Models\Thread');
+        $reply = make('App\Models\Reply', [
+            'body' => 'Yahoo Customer Support'
+        ]);
+
+        $this->json('post', $thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(422);
+    }
+
+    /** @test */
+    function users_may_only_reply_a_maximum_of_once_per_minute()
+    {
+        $this->withExceptionHandling();
+        
+        $this->signIn();
+
+        $thread = create('App\Models\Thread');
+        $reply = make('App\Models\Reply');
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(200);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(429);
+    }
 }
