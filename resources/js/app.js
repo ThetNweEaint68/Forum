@@ -20,9 +20,11 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('flash', require('./components/Flash.vue'));
-Vue.component('thread-view', require('./pages/Thread.vue'));
 Vue.component('paginator', require('./components/Paginator.vue'));
 Vue.component('user-notifications', require('./components/UserNotifications.vue'));
+Vue.component('avatar-form', require('./components/AvatarForm.vue'));
+
+Vue.component('thread-view', require('./pages/Thread.vue'));
 
 
 /**

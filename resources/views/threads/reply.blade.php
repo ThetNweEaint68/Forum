@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="panel-body">
+    <div class="panel-body" v-html="body">
         {{ $reply->body }}
     </div><br>
 
