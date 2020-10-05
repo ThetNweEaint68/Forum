@@ -30,7 +30,8 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token', 'email',
+        'remember_token',
+        'email',
     ];
 
     /**
@@ -40,6 +41,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'confirmed' => 'boolean'
     ];
 
     /**
@@ -84,13 +86,23 @@ class User extends Authenticatable
     }
 
     /**
+     * Mark the user's account as confirmed.
+     */
+    public function confirm()
+    {
+        $this->confirmed = true;
+
+        $this->save();
+    }
+
+    /**
      * Get the path to the user's avatar.
      *
      * @param  string $avatar
      * @return string
      */
-    public function getAvatarPathAttribute($avatar)
+    public function avatar()
     {
-        return asset($avatar ?: 'images/avatars/default.png');
+        return asset($this->avatar_path ?: 'images/avatars/default.png');
     }
 }

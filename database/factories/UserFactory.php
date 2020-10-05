@@ -12,7 +12,7 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -20,6 +20,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'confirmed' => true
+    ];
+});
+
+$factory->state(App\Models\User::class, 'unconfirmed', function () {
+    return [
+        'confirmed' => false
     ];
 });
 
@@ -33,7 +40,8 @@ $factory->define(App\Models\Thread::class, function ($faker) {
             return factory('App\Models\Channel')->create()->id;
         },
         'title' => $faker->sentence,
-        'body'  => $faker->paragraph
+        'body'  => $faker->paragraph,
+        'visits' => 0
     ];
 });
 
