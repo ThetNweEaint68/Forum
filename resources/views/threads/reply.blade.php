@@ -35,7 +35,9 @@
                 {{ method_field('DELETE') }}
 
                 <button type="submit" class="btn btn-danger">Delete</button><br>
-            </form>
+            </form>&nbsp;
+
+            <button class="btn btn-xs btn-secondary ml-a">Best Reply?</button><br><br><br>
         </div>
     @endcan
 </div>

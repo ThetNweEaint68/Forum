@@ -31,18 +31,21 @@ $factory->state(App\Models\User::class, 'unconfirmed', function () {
 });
 
 
-$factory->define(App\Models\Thread::class, function ($faker) {
-    return [
-        'user_id' => function () {
-            return factory('App\Models\User')->create()->id;
-        },
-        'channel_id' => function () {
-            return factory('App\Models\Channel')->create()->id;
-        },
-        'title' => $faker->sentence,
-        'body'  => $faker->paragraph,
-        'visits' => 0
-    ];
+$factory->define(App\Models\Thread::class, function ($faker){
+        $title = $faker->sentence;
+
+        return [
+            'user_id' => function () {
+                return factory('App\Models\User')->create()->id;
+            },
+            'channel_id' => function () {
+                return factory('App\Models\Channel')->create()->id;
+            },
+            'title' => $title,
+            'body'  => $faker->paragraph,
+            'visits' => 0,
+            'slug' => $title
+        ];
 });
 
 $factory->define(App\Models\Channel::class, function ($faker) {

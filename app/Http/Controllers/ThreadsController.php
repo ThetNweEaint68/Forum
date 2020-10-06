@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Thread;
 use App\Models\Channel;
+use App\Trending;
 use App\Filters\ThreadFilters;
 
 class ThreadsController extends Controller
@@ -22,9 +23,10 @@ class ThreadsController extends Controller
      *
      * @param  Channel      $channel
      * @param ThreadFilters $filters
+     * @param \App\Trending $trending
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel, ThreadFilters $filters)
+    public function index(Channel $channel, ThreadFilters $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
 
@@ -32,7 +34,10 @@ class ThreadsController extends Controller
             return $threads;
         }
 
-        return view('threads.index', compact('threads'));
+        return view('threads.index', [
+            'threads' => $threads,
+            'trending' => $trending->get()
+        ]);
     }
 
     /**
@@ -66,6 +71,10 @@ class ThreadsController extends Controller
             'body' => request('body')
         ]);
 
+        if (request()->wantsJson()) {
+            return response($thread, 201);
+        }
+
         return redirect($thread->path())
             ->with('flash', 'Your thread has been published!');
     }
@@ -73,14 +82,17 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  integer     $channel
-     * @param  \App\Thread $thread
+     * @param  integer      $channel
+     * @param  \App\Models\Thread  $thread
+     * @param \App\Trending $trending
      * @return \Illuminate\Http\Response
      */
-    public function show($channel, Thread $thread)
+    public function show($channel, Thread $thread, Trending $trending)
     {
+        $trending->push($thread);
+
         $thread->increment('visits');
-        
+
         return view('threads.show', [
             'thread' => $thread,
             'replies' => $thread->replies()->paginate(20)
