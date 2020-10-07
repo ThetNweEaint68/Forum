@@ -96,6 +96,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Determine if the user is an administrator.
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return in_array($this->name, ['Thet', 'Nwe']);
+    }
+
+    /**
      * Get the path to the user's avatar.
      *
      * @param  string $avatar

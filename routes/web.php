@@ -21,12 +21,16 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('threads', [App\Http\Controllers\ThreadsController::class, 'index']);
+Route::get('threads', [App\Http\Controllers\ThreadsController::class, 'index'])->name('threads');
 Route::get('threads/create', [App\Http\Controllers\ThreadsController::class, 'create']);
 Route::get('threads/{channel}/{thread}', [App\Http\Controllers\ThreadsController::class, 'show']);
-Route::get('threads/{channel}', [App\Http\Controllers\ThreadsController::class, 'index']);
 Route::delete('threads/{channel}/{thread}', [App\Http\Controllers\ThreadsController::class, 'destroy']);
 Route::post('threads', [App\Http\Controllers\ThreadsController::class, 'store']);
+Route::get('threads/{channel}', [App\Http\Controllers\ThreadsController::class, 'index']);
+
+Route::post('locked-threads/{thread}', [App\Http\Controllers\LockedThreadsController::class, 'store'])->name('locked-threads.store')->middleware('admin');
+Route::delete('locked-threads/{thread}', [App\Http\Controllers\LockedThreadsController::class, 'destroy'])->name('locked-threads.destroy')->middleware('admin');
+
 Route::get('/threads/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'index']);
 Route::post('/threads/{channel}/{thread}/replies', [App\Http\Controllers\RepliesController::class, 'store']);
 Route::patch('/replies/{reply}',[App\Http\Controllers\RepliesController::class, 'update']);

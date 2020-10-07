@@ -10,7 +10,7 @@ class TrendingThreadsTest extends TestCase
 {
     use DatabaseMigrations;
 
-    protected function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

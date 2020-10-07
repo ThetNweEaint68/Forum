@@ -73,6 +73,8 @@
 
                         <p>
                             <button class="btn btn-primary">Subscribe</button>
+
+                            <button class="btn btn-secondary">Lock</button>
                         </p>
                     </div>
                 </div>
