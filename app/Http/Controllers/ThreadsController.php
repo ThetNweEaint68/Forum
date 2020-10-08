@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Thread;
 use App\Models\Channel;
 use App\Trending;
@@ -54,13 +53,12 @@ class ThreadsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param \App\Rules\Recaptcha $recaptcha
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Recaptcha $recaptcha)
     {
-        $this->validate($request, [
+        request()->validate([
             'title' => 'required|spamfree',
             'body' => 'required|spamfree',
             'channel_id' => 'required|exists:channels,id',
@@ -100,6 +98,24 @@ class ThreadsController extends Controller
             'thread' => $thread,
             'replies' => $thread->replies()->paginate(20)
         ]);
+    }
+
+    /**
+     * Update the given thread.
+     *
+     * @param string $channel
+     * @param Thread $thread
+     */
+    public function update($channel, Thread $thread)
+    {
+        $this->authorize('update', $thread);
+
+        $thread->update(request()->validate([
+            'title' => 'required',
+            'body' => 'required'
+        ]));
+
+        return $thread;
     }
 
     public function destroy($channel, Thread $thread)

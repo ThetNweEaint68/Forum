@@ -9,15 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
-        "barryvdh/laravel-debugbar": "^3.5",
+        "algolia/algoliasearch-client-php": "^2.7",
+        "arcanedev/no-captcha": "^12.1",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "kitetail/zttp": "0.3.0",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0",
-        "predis/predis": "^1.1"
+        "laravel/scout": "^8.3",
+        "laravel/tinker": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
