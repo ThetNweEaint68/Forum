@@ -61,8 +61,8 @@ class ThreadsController extends Controller
         request()->validate([
             'title' => 'required|spamfree',
             'body' => 'required|spamfree',
-            'channel_id' => 'required|exists:channels,id',
-            'g-recaptcha-response' => ['required', '$recaptcha']
+            'channel_id' => 'required|exists:channels,id'
+            //'g-recaptcha-response' => ['required', '$recaptcha']
         ]);
 
         $thread = Thread::create([

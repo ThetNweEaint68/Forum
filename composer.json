@@ -11,12 +11,14 @@
         "php": "^7.3",
         "algolia/algoliasearch-client-php": "^2.7",
         "arcanedev/no-captcha": "^12.1",
+        "barryvdh/laravel-debugbar": "^3.5",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/scout": "^8.3",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "stevebauman/purify": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

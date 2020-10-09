@@ -3362,11 +3362,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3603,7 +3598,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       editing: false,
-      id: this.id,
+      id: this.reply.id,
       body: this.reply.body,
       isBest: this.reply.isBest
     };
@@ -3721,6 +3716,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Wysiwyg.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Wysiwyg.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: C:\\laragon\\www\\Forum\\resources\\js\\components\\Wysiwyg.vue: Unexpected token, expected \",\" (16:57)\n\n\u001b[0m \u001b[90m 14 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m    mounted () {\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 16 | \u001b[39m        \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$ref\u001b[33m.\u001b[39mtrix\u001b[33m.\u001b[39maddEventListener(\u001b[32m'trix-change'\u001b[39m\u001b[33m.\u001b[39m e \u001b[33m=>\u001b[39m {\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m                                                         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 17 | \u001b[39m            console\u001b[33m.\u001b[39mlog(\u001b[32m'Handling'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 18 | \u001b[39m            \u001b[36mthis\u001b[39m\u001b[33m.\u001b[39m$emit(\u001b[32m'input'\u001b[39m\u001b[33m,\u001b[39m e\u001b[33m.\u001b[39mtarget\u001b[33m.\u001b[39minnerHTML)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 19 | \u001b[39m            \u001b[0m\n    at Parser._raise (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:766:17)\n    at Parser.raiseWithData (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:759:17)\n    at Parser.raise (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:753:17)\n    at Parser.unexpected (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:8966:16)\n    at Parser.expect (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:8952:28)\n    at Parser.parseCallExpressionArguments (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10033:14)\n    at Parser.parseCoverCallAndAsyncArrowHead (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9960:29)\n    at Parser.parseSubscript (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9896:19)\n    at Parser.parseSubscripts (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9867:19)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9850:17)\n    at Parser.parseUpdate (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9824:21)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9813:17)\n    at Parser.parseExprOps (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9683:23)\n    at Parser.parseMaybeConditional (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9657:23)\n    at Parser.parseMaybeAssign (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9620:21)\n    at Parser.parseExpressionBase (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9564:23)\n    at C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9558:39\n    at Parser.allowInAnd (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:11297:16)\n    at Parser.parseExpression (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9558:17)\n    at Parser.parseStatementContent (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:11562:23)\n    at Parser.parseStatement (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:11431:17)\n    at Parser.parseBlockOrModuleBlockBody (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:12013:25)\n    at Parser.parseBlockBody (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:11999:10)\n    at Parser.parseBlock (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:11983:10)\n    at Parser.parseFunctionBody (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10963:24)\n    at Parser.parseFunctionBodyAndFinish (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10946:10)\n    at Parser.parseMethod (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10883:10)\n    at Parser.parseObjectMethod (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10808:19)\n    at Parser.parseObjPropValue (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10841:23)\n    at Parser.parsePropertyDefinition (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10772:10)\n    at Parser.parseObjectLike (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10664:25)\n    at Parser.parseExprAtom (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:10198:23)\n    at Parser.parseExprSubscripts (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9844:23)\n    at Parser.parseUpdate (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9824:21)\n    at Parser.parseMaybeUnary (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9813:17)\n    at Parser.parseExprOps (C:\\laragon\\www\\Forum\\node_modules\\@babel\\parser\\lib\\index.js:9683:23)");
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Thread.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Thread.vue?vue&type=script&lang=js& ***!
@@ -3743,13 +3749,39 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       repliesCount: this.thread.replies_count,
-      locked: this.thread.locked
+      locked: this.thread.locked,
+      title: this.thread.title,
+      body: this.thread.body,
+      form: {},
+      editing: false
     };
+  },
+  created: function created() {
+    this.resetForm();
   },
   methods: {
     toggleLock: function toggleLock() {
-      axios[this.locked ? 'delete' : 'post']('/locked-threads/' + this.thread.slug);
+      var uri = "/locked-thread/".concat(this.thread.slug);
+      axios[this.locked ? 'delete' : 'post'](uri);
       this.locked = !this.locked;
+    },
+    update: function update() {
+      var _this = this;
+
+      var uri = "/threads/".concat(this.thread.channel.slug, "/").concat(this.thread.slug);
+      axios.patch(uri, this.form).then(function () {
+        _this.editing = false;
+        _this.title = _this.form.title;
+        _this.body = _this.form.body;
+        flash('Your thread has been updated.');
+      });
+    },
+    resetForm: function resetForm() {
+      this.form = {
+        title: this.thread.title,
+        body: this.thread.body
+      };
+      this.editing = false;
     }
   }
 });
@@ -62097,35 +62129,23 @@ var render = function() {
   return _c("div", [
     _vm.signedIn
       ? _c("div", [
-          _c("div", { staticClass: "form-group" }, [
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("wysiwyg", {
+                attrs: { name: "body", placeholder: "Have something to say?" },
+                model: {
                   value: _vm.body,
+                  callback: function($$v) {
+                    _vm.body = $$v
+                  },
                   expression: "body"
                 }
-              ],
-              staticClass: "form-control",
-              attrs: {
-                name: "body",
-                id: "body",
-                placeholder: "Have something to say?",
-                rows: "5",
-                required: ""
-              },
-              domProps: { value: _vm.body },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.body = $event.target.value
-                }
-              }
-            })
-          ]),
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "button",
@@ -62524,6 +62544,44 @@ var staticRenderFns = [
     )
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Wysiwyg.vue?vue&type=template&id=25ef60f2&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Wysiwyg.vue?vue&type=template&id=25ef60f2& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("input", {
+        attrs: { id: "trix", type: "hidden", name: _vm.name },
+        domProps: { value: _vm.value }
+      }),
+      _vm._v(" "),
+      _c("trix-editor", {
+        ref: "trix",
+        attrs: { input: "trix", placeholder: _vm.placeholder }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -74721,6 +74779,7 @@ Vue.component('flash', __webpack_require__(/*! ./components/Flash.vue */ "./reso
 Vue.component('paginator', __webpack_require__(/*! ./components/Paginator.vue */ "./resources/js/components/Paginator.vue"));
 Vue.component('user-notifications', __webpack_require__(/*! ./components/UserNotifications.vue */ "./resources/js/components/UserNotifications.vue"));
 Vue.component('avatar-form', __webpack_require__(/*! ./components/AvatarForm.vue */ "./resources/js/components/AvatarForm.vue"));
+Vue.component('wysiwyg', __webpack_require__(/*! ./components/Wysiwyg.vue */ "./resources/js/components/Wysiwyg.vue"));
 Vue.component('thread-view', __webpack_require__(/*! ./pages/Thread.vue */ "./resources/js/pages/Thread.vue"));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -75519,6 +75578,78 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserNotifications_vue_vue_type_template_id_23249cfc___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_UserNotifications_vue_vue_type_template_id_23249cfc___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Wysiwyg.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Wysiwyg.vue ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Wysiwyg_vue_vue_type_template_id_25ef60f2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Wysiwyg.vue?vue&type=template&id=25ef60f2& */ "./resources/js/components/Wysiwyg.vue?vue&type=template&id=25ef60f2&");
+/* harmony import */ var _Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Wysiwyg.vue?vue&type=script&lang=js& */ "./resources/js/components/Wysiwyg.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Wysiwyg_vue_vue_type_template_id_25ef60f2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Wysiwyg_vue_vue_type_template_id_25ef60f2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Wysiwyg.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Wysiwyg.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Wysiwyg.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Wysiwyg.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Wysiwyg.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Wysiwyg.vue?vue&type=template&id=25ef60f2&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Wysiwyg.vue?vue&type=template&id=25ef60f2& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_template_id_25ef60f2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Wysiwyg.vue?vue&type=template&id=25ef60f2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Wysiwyg.vue?vue&type=template&id=25ef60f2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_template_id_25ef60f2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Wysiwyg_vue_vue_type_template_id_25ef60f2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
