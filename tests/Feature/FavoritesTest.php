@@ -22,7 +22,7 @@ class FavoritesTest extends TestCase
     {
         $this->signIn();
 
-        $reply = create('App\Models\Reply');
+        $reply = factory('App\Models\Reply')->create();
 
         $this->post('replies/' . $reply->id . '/favorites');
 
