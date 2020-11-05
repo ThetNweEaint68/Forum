@@ -2,17 +2,19 @@
 
 namespace Tests\Feature;
 
+use App\Models\Thread;
+use App\Models\User;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 class ProfilesTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     function a_user_has_a_profile()
     {
-        $user = create('App\Models\User');
+        $user = create(User::class);
 
         $this->get("/profiles/{$user->name}")
             ->assertSee($user->name);
@@ -23,7 +25,7 @@ class ProfilesTest extends TestCase
     {
         $this->signIn();
 
-        $thread = create('App\Models\Thread', ['user_id' => auth()->id()]);
+        $thread = create(Thread::class, ['user_id' => auth()->id()]);
 
         $this->get("/profiles/" . auth()->user()->name)
             ->assertSee($thread->title)

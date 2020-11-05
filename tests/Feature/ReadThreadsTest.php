@@ -2,20 +2,21 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use App\Models\Channel;
+use App\Models\Reply;
+use App\Models\Thread;
+use App\Models\User;
 
 class ReadThreadsTest extends TestCase
 {
-    use DatabaseMigrations;
-
     protected $thread;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->thread = create('App\Models\Thread');
+        $thread = create(Thread::class);
     }
 
     /** @test */
@@ -35,9 +36,9 @@ class ReadThreadsTest extends TestCase
     /** @test */
     function a_user_can_filter_threads_according_to_a_channel()
     {
-        $channel = create('App\Models\Channel');
-        $threadInChannel = create('App\Models\Thread', ['channel_id' => $channel->id]);
-        $threadNotInChannel = create('App\Models\Thread');
+        $channel = create(Channel::class);
+        $threadInChannel = create(Thread::class, ['channel_id' => $channel->id]);
+        $threadNotInChannel = create(Thread::class);
 
         $this->get('/threads/' . $channel->slug)
             ->assertSee($threadInChannel->title)

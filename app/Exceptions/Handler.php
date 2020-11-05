@@ -3,10 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
-use Illuminate\validation\ValidationException;
-use Illuminate\Auth\AuthenticationException;
-use Exception;
 
 class Handler extends ExceptionHandler
 {
@@ -62,7 +60,7 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ThrottleException) {
             return response($exception->getMessage(), 429);
         }
-        
+
         return parent::render($request, $exception);
     }
 }

@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Thread;
+use App\Models\User;
+use App\Models\Channel;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ThreadFactory extends Factory
@@ -21,17 +23,14 @@ class ThreadFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->sentence;
+
         return [
-            'user_id' => function () {
-                return factory('App\Models\User')->create()->id;
-            },
-            'channel_id' => function () {
-                return factory('App\Models\Channel')->create()->id;
-            },
+            'user_id' => User::count() ? User::pluck('id')->random() : factory(User::class),
+            'channel_id' => factory(Channel::class),
             'title' => $title,
-            'body' => $faker->paragraph,
+            'body' => $this->faker->paragraph,
             'visits' => 0,
-            'slug' => str_slug($title),
             'locked' => false
         ];
     }

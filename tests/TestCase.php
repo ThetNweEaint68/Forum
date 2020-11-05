@@ -2,28 +2,26 @@
 
 namespace Tests;
 
-use App\Exceptions\Handler;
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Support\Facades\DB;
 use Tests\CreatesApplication;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use App\Models\User;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function setUp(): void
-    {
-        parent::setUp();
+    //public function setUp(): void
+    //{
+        //parent::setUp();
 
-        DB::statement('PRAGMA foreign_keys=on;');
+        //DB::statement('PRAGMA foreign_keys=on;');
 
         //$this->disableExceptionHandling();
-    }
+    //}
 
     protected function signIn($user = null)
     {
-        $user = $user ?: create('App\Models\User');
+        $user = $user ?: create(User::class);
 
         $this->actingAs($user);
 
@@ -44,10 +42,10 @@ abstract class TestCase extends BaseTestCase
         //});
    // }
 
-    protected function withExceptionHandling()
-    {
-        $this->app->instance(ExceptionHandler::class, $this->oldExceptionHandler);
+    //protected function withExceptionHandling()
+    //{
+        //$this->app->instance(ExceptionHandler::class, $this->oldExceptionHandler);
 
-        return $this;
-    }
+        //return $this;
+    //}
 }

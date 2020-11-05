@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Reply;
+use App\Models\User;
+use App\Models\Thread;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReplyFactory extends Factory
@@ -22,13 +24,9 @@ class ReplyFactory extends Factory
     public function definition()
     {
         return [
-            'thread_id' => function () {
-                return factory('App\Models\Thread')->create()->id;
-            },
-            'user_id' => function () {
-                return factory('App\Models\User')->create()->id;
-            },
-            'body' => $faker->paragraph
+            'user_id' => User::count() ? User::pluck('id')->random() : factory(User::class),
+            'thread_id' => factory(Thread::class),
+            'body' => $this->faker->paragraph
         ];
     }
 }

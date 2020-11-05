@@ -2,14 +2,16 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AddAvatarTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function only_members_can_add_avatars()
@@ -33,7 +35,7 @@ class AddAvatarTest extends TestCase
     /** @test */
     public function a_user_may_add_an_avatar_to_their_profile()
     {
-        $this->signIn();
+        $this->withExceptionHandling()->signIn();
 
         Storage::fake('public');
 

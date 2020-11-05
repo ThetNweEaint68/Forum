@@ -27,7 +27,7 @@ class CreateThreadsTest extends TestCase
     /** @test */
     function guests_may_not_create_threads()
     {
-        $this->withExceptionHandling();
+        //$this->withExceptionHandling();
 
         $this->get('/threads/create')
             ->assertRedirect(route('login'));
@@ -158,6 +158,6 @@ class CreateThreadsTest extends TestCase
 
         $thread = make('App\Models\Thread', $overrides);
 
-        return $this->post(route('threads'), $thread->toArray() + ['g-recaptcha-response' => 'token']);
+         return $this->post('/threads', $thread->toArray());
     }
 }
