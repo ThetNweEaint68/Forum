@@ -11,7 +11,6 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AddAvatarTest extends TestCase
 {
-    use RefreshDatabase;
 
     /** @test */
     public function only_members_can_add_avatars()

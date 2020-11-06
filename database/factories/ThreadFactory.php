@@ -1,37 +1,21 @@
 <?php
 
-namespace Database\Factories;
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Models\Channel;
 use App\Models\Thread;
 use App\Models\User;
-use App\Models\Channel;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Generator as Faker;
 
-class ThreadFactory extends Factory
-{
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = Thread::class;
+$factory->define(Thread::class, function (Faker $faker) {
+    $title = $faker->sentence;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
-    {
-        $title = $this->faker->sentence;
-
-        return [
-            'user_id' => User::count() ? User::pluck('id')->random() : factory(User::class),
-            'channel_id' => factory(Channel::class),
-            'title' => $title,
-            'body' => $this->faker->paragraph,
-            'visits' => 0,
-            'locked' => false
-        ];
-    }
-}
+    return [
+        'user_id' => User::count() ? User::pluck('id')->random() : factory(User::class),
+        'channel_id' => factory(Channel::class),
+        'title' => $title,
+        'body' => $faker->paragraph,
+        'visits' => 0,
+        'locked' => false
+    ];
+});

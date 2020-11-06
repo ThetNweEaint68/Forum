@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
 use App\Models\Activity;
 use Carbon\Carbon;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 
