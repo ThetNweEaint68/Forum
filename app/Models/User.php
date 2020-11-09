@@ -74,6 +74,16 @@ class User extends Authenticatable
         return $this->hasOne(Reply::class)->latest();
     }
 
+    /**
+     * Get the path to the user's avatars.
+     *
+     * @param  string $avatar
+     * @return string
+     */
+    public function getAvatarPathAttribute($avatar)
+    {
+        return asset(\Storage::url($avatar ?: 'avatars/default.png'));
+    }
 
     /**
      * Get all activity for the user.
@@ -103,16 +113,5 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return in_array($this->name, ['Thet', 'Nwe']);
-    }
-
-    /**
-     * Get the path to the user's avatar.
-     *
-     * @param  string $avatar
-     * @return string
-     */
-    public function avatar()
-    {
-        return asset($this->avatar_path ?: 'images/avatars/default.png');
     }
 }

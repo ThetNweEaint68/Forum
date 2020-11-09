@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ChannelTest extends TestCase
@@ -15,6 +16,7 @@ class ChannelTest extends TestCase
         $channel = create('App\Models\Channel');
         $thread = create('App\Models\Thread', ['channel_id' => $channel->id]);
 
+        $this->assertInstanceOf(Collection::class, $channel->threads);
         $this->assertTrue($channel->threads->contains($thread));
     }
 }

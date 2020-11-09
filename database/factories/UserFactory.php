@@ -24,6 +24,14 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => bcrypt('labas'),
         'remember_token' => Str::random(10),
+        'confirmed' => true
+    ];
+});
+
+
+$factory->state(User::class, 'unconfirmed', function () {
+    return [
+        'confirmed' => false
     ];
 });
 

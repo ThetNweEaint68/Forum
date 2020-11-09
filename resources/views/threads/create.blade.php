@@ -35,9 +35,9 @@
                                 <textarea name="body" id="body" class="form-control" rows="8" required="">{{ old('body') }}</textarea>
                             </div>
 
-                            {{--<div class="form-group">
-                                <div class="g-recaptcha" data-sitekey="6LeXrDUUAAAAAFco7ShbMrJx0fh-ZrLxK9Amd-zP"></div>
-                            </div> --}}
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LeT0eAZAAAAAD3gv2Os3eNVud1RXVjTyBhgYCyX"></div>
+                            </div>
 
 
                             <div class="form-group">

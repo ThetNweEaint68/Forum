@@ -10,28 +10,27 @@ use App\Models\User;
 
 class ReadThreadsTest extends TestCase
 {
-    protected $thread;
-
     public function setUp(): void
     {
         parent::setUp();
 
-        $thread = create(Thread::class);
+        $this->thread = create(Thread::class);
     }
 
     /** @test */
-    public function a_user_can_view_all_threads()
-    {
-        $this->get('/threads')
-            ->assertSee($this->thread->title);
-    }
+        public function a_user_can_view_all_threads()
+        {
+            $this
+                ->get('threads')
+                ->assertSee($this->thread->title);
+        }
 
-    /** @test */
-    function a_user_can_read_a_single_thread()
-    {
-        $this->get($this->thread->path())
+        /** @test */
+        public function a_user_can_view_a_single_thread()
+        {
+            $this->get($this->thread->path())
             ->assertSee($this->thread->title);
-    }
+        }
 
     /** @test */
     function a_user_can_filter_threads_according_to_a_channel()
@@ -40,7 +39,7 @@ class ReadThreadsTest extends TestCase
         $threadInChannel = create(Thread::class, ['channel_id' => $channel->id]);
         $threadNotInChannel = create(Thread::class);
 
-        $this->get('/threads/' . $channel->slug)
+        $this->get('threads/' . $channel->slug)
             ->assertSee($threadInChannel->title)
             ->assertDontSee($threadNotInChannel->title);
     }
@@ -48,14 +47,14 @@ class ReadThreadsTest extends TestCase
     /** @test */
     function a_user_can_filter_threads_by_any_username()
     {
-        $this->signIn(create('App\Models\User', ['name' => 'Thet']));
+        $me = create(User::class, ['name' => 'me']);
+        $myThread = create(Thread::class, ['user_id' => $me->id]);
 
-        $threadByJohn = create('App\Models\Thread', ['user_id' => auth()->id()]);
-        $threadNotByJohn = create('App\Models\Thread');
-
-        $this->get('threads?by=JohnDoe')
-            ->assertSee($threadByJohn->title)
-            ->assertDontSee($threadNotByJohn->title);
+        $this
+            ->signIn($me)
+            ->get('threads?by=me')
+            ->assertSee($myThread->title)
+            ->assertDontSee($this->thread->title);
     }
 
     /** @test */

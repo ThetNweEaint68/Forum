@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Filters\ThreadFilters;
 use App\Events\ThreadReceivedNewReply;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Str;
 
 class Thread extends Model
 {
-    use HasFactory, RecordsActivity, Searchable;
+    use HasFactory, RecordsActivity;
 
     /**
      * Don't auto-apply mass assignment protection.
@@ -49,11 +50,7 @@ class Thread extends Model
     {
         parent::boot();
 
-        static::deleting(function ($thread) {
-            $thread->replies->each->delete();
-        });
-
-        static::created(function ($thread) {
+         static::created(function ($thread) {
             $thread->update(['slug' => $thread->title]);
         });
     }
@@ -104,7 +101,7 @@ class Thread extends Model
      * @param  array $reply
      * @return Model
      */
-    public function addReply($reply)
+    public function addReply(array $reply)
     {
         $reply = $this->replies()->create($reply);
 
@@ -131,10 +128,10 @@ class Thread extends Model
      * @param  int|null $userId
      * @return $this
      */
-    public function subscribe($userId = null)
+    public function subscribe($user = null)
     {
         $this->subscriptions()->create([
-            'user_id' => $userId ?: auth()->id()
+            'user_id' => $user ?? auth()->id()
         ]);
 
         return $this;
@@ -174,6 +171,11 @@ class Thread extends Model
             ->exists();
     }
 
+    public function getBodyAttribute($body)
+    {
+        return \Purify::clean($body);
+    }
+
     /**
      * Get the route key name.
      *
@@ -191,7 +193,13 @@ class Thread extends Model
      */
     public function setSlugAttribute($value)
     {
-        if (static::whereSlug($slug = $value)->exists()) {
+        // if (static::whereSlug($slug = $value)->exists()) {
+        //     $slug = "{$slug}-{$this->id}";
+        // }
+
+        // $this->attributes['slug'] = $slug;
+
+        if (static::whereSlug($slug = Str::slug($value))->exists()) {
             $slug = "{$slug}-{$this->id}";
         }
 
