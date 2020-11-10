@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Thread;
 use App\Models\Channel;
 use App\Trending;
-use App\SpamFree;
+use App\Rules\Recaptcha;
+use App\Rules\SpamFree;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
-use App\Rules\Recaptcha;
 
 class ThreadsController extends Controller
 {
@@ -64,7 +64,7 @@ class ThreadsController extends Controller
             'title' => 'required|spamfree',
             'body' => 'required|spamfree',
             'channel_id' => 'required|exists:channels,id',
-            'g-recaptcha-response' => ['required', $recaptcha]
+            'g-recaptcha-response' => ['required', $recaptcha],
         ]);
 
         $thread = Thread::create([
@@ -73,7 +73,6 @@ class ThreadsController extends Controller
             'title' => request('title'),
             'body' => request('body')
         ]);
-
 
         if (request()->wantsJson()) {
             return response($thread, 201);
@@ -97,7 +96,10 @@ class ThreadsController extends Controller
 
         $thread->increment('visits');
 
-        return view('threads.show', compact('thread'));
+        return view('threads.show', [
+            'thread' => $thread,
+            'replies' => $thread->replies()->paginate(20)
+        ]);
     }
 
     /**
@@ -122,10 +124,13 @@ class ThreadsController extends Controller
     {
         $this->authorize('update', $thread);
 
-        $thread->replies->each->delete();
         $thread->delete();
 
-        return redirect('threads');
+        if (request()->wantsJson()) {
+            return response([], 204);
+        }
+
+        return redirect('/threads');
     }
 
     /**
